@@ -128,7 +128,7 @@ include "connection.php";
 										<div
 											class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 											
-              								<input class="mdl-textfield__input" id="upload" name="product_img2" type="file" required>
+              								<input class="mdl-textfield__input" id="upload" name="product_img2" type="file">
 										</div>
 									</div>
 									<div class="col-lg-6 p-t-20">
@@ -136,7 +136,7 @@ include "connection.php";
 										<div
 											class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 											
-              								<input class="mdl-textfield__input" id="upload" name="product_img3" type="file" required>
+              								<input class="mdl-textfield__input" id="upload" name="product_img3" type="file">
 										</div>
 									</div>
 									<div class="col-lg-6 p-t-20">
@@ -144,7 +144,7 @@ include "connection.php";
 										<div
 											class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
 											
-              								<input class="mdl-textfield__input" id="upload" name="product_img4" type="file" required>
+              								<input class="mdl-textfield__input" id="upload" name="product_img4" type="file">
 										</div>
 									</div>
 									
@@ -179,30 +179,115 @@ include "connection.php";
 
 </html>
 <?php
-	if(isset($_POST['submit'])){
-		$name=mysqli_real_escape_string($link, $_POST['name']);
-		$email=mysqli_real_escape_string($link, $_POST['email']);
-		$roomtype=mysqli_real_escape_string($link, $_POST['roomtype']);
-		$arrive=mysqli_real_escape_string($link, $_POST['arrive']);
-		$depart=mysqli_real_escape_string($link, $_POST['depart']);
-		$address=mysqli_real_escape_string($link, $_POST['address']);
-		$gender=mysqli_real_escape_string($link, $_POST['gender']);
-		$phone=mysqli_real_escape_string($link, $_POST['phone']);
-
-		$check=mysqli_query($link, "SELECT * from rooms where type='$roomtype' and status != 'Booked'");
-		$count=mysqli_num_rows($check);
-		if($count==0){
-			echo "<script>alert('Room Already Exits')</script>";
-		}else{
-		while($cc=mysqli_fetch_array($check)){
-		$roomno=$cc['room_no'];
-	}
-
-			$insert=mysqli_query($link, "INSERT into bookings (name,email,phone,gender,address,date,checkout,status,room) values ('$name','$email','$phone','$gender','$address','$arrive','$depart','paid','$roomno')")or die(mysqli_error($link));
-
-			$update=mysqli_query($link,"UPDATE rooms set status='Booked' where room_no='$roomno'")or die(mysqli_error($link));
-			echo "<script>alert('Booking Added Successfully')</script>";
-			echo "<script>window.open('view_booking.php', '_self')</script>";
+	
+	if (isset($_POST['submit'])) {
+	  $title=mysqli_real_escape_string($link, $_POST['title']);
+	  $category=mysqli_real_escape_string($link, $_POST['category']);
+	  $size=mysqli_real_escape_string($link, $_POST['size']);
+	  $color=mysqli_real_escape_string($link, $_POST['color']);
+	  $brand=mysqli_real_escape_string($link, $_POST['brand']);
+	  $price=mysqli_real_escape_string($link, $_POST['price']);
+	  $description=mysqli_real_escape_string($link, $_POST['description']);
+	  $vId = $_SESSION['id'];
+	
+	  $image1=$_FILES['product_img1']['name'];
+	  $tmp_image1=$_FILES['product_img1']['tmp_name'];
+	  $size_image1=$_FILES['product_img1']['size'];
+	  $error1=$_FILES['product_img1']['error'];
+	
+	
+	  if ($image1 !== '') {
+		$fileExt = explode('.', $image1);
+		$fileActual = strtolower(end($fileExt));
+		$allowed = array('jpg', 'jpeg', 'png');
+	
+		if (in_array($fileActual,$allowed)){
+		
+		  if($error1 === 0){
+			$fileDest1 = uniqid('', true) . '.' . $fileActual;
+			move_uploaded_file($tmp_image1,'../product_images/'.$fileDest1);
+		  
+			$fileDest = '';
+			$i = 0;
+			$fileDestexplode = array();
+			for ($i=2; $i < 5 ; $i++) { 
+			  if ( !empty($_FILES['product_img'.$i]['name'])) {
+				$imagei=$_FILES['product_img'.$i]['name'];
+				$tmp_imagei=$_FILES['product_img'.$i]['tmp_name'];
+				$size_imagei=$_FILES['product_img'.$i]['size'];
+				$errori=$_FILES['product_img'.$i]['error'];
+	
+				if ($size_imagei > 2000000) {
+				  echo "<script>alert('Image should be less than or equal to 2mb!!')</script>";
+				  $_SESSION['failure'] = 'error';
+	
+				}else {
+				  $fileExt = explode('.', $imagei);
+				  $fileActual = strtolower(end($fileExt));
+				  $allowed = array('jpg', 'jpeg', 'png');
+	
+				  if (in_array($fileActual,$allowed)){
+				  
+					if($errori === 0){
+					  $fileDesti = uniqid('', true) . '.' . $fileActual;
+					  
+					  move_uploaded_file($tmp_imagei, '../product_images/'.$fileDesti);
+						
+					  $fileDest .= $fileDesti. ',';
+					  $fileDestexplode = explode(',', $fileDest);
+					
+					}else {
+					  echo "<script>alert('There is an error with your second/third/fourth image')</script>";
+					  $_SESSION['failure'] = 'error';
+					}
+				  
+				  }else {
+					echo "<script>alert('Pls upload .jpg or .jpeg or .png images')</script>";
+					$_SESSION['failure'] = 'error';
+				  }
+			
+				}
+	
+				if (isset($_SESSION['failure'])) {
+				  $i = 4;
+				  unset($_SESSION['failure']);
+	
+				}
+				
+			  }
+			}
+			
+			for ($i=0; $i < 4 ; $i++) { 
+			  if (empty($fileDestexplode[$i])) {
+				$fileDestexplode[$i] = NULL;
+			  }
+			}
+			$sql = "INSERT into products (vendor_id,product,price,category,description, color,size, brand, status,img1,date, img2, img3, img4 ) values ('0','$title','$price','$category','$description','$color','$size', '$brand', 'pending', '$fileDest1', NOW(), '$fileDestexplode[0]', '$fileDestexplode[1]', '$fileDestexplode[2]')";
+				
+			$insert= mysqli_query($link, $sql) 
+			  or die(mysqli_error($link));
+	
+			if($insert) {
+	
+			  echo "<script>alert('Success in posting ad!!')</script>";
+			  echo "<script>window.open('view_ads.php', '_self')</script>";
+			}
+	
+		  }else {
+			echo "<script>alert('There is an error with your first image')</script>";
+			
+		  }
+		
+		}else {
+		  echo "<script>alert('Pls upload .jpg or .jpeg or .png image')</script>";
 		}
+	
+	  }elseif ($size_image1 > 2000000) {
+		echo "<script>alert('Image should be less than or equal to 2mb!!')</script>";
+	
+	  }else {
+		echo "<script>alert('Select your image(s) (first one is required)!!')</script>";
+	  }
+							 
 	}
-?>
+	?>

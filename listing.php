@@ -75,7 +75,12 @@ include "connection.php";
                       <div class="dollar">$<?php echo $fetch['price']; ?></div>
                     </div>
                   </div>
-                  <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch2['location']; ?></div>
+                  <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php if ($vId === '0') {
+														echo 'Nsukka, Nigeria';
+													}else {
+														echo $fetch2['location'];
+													}
+													?></div>
                   <p><?php echo substr($fetch['description'], 0, 300); ?> </p>
                   <div class="view-btn"><a href="detail-page.php?id=<?php echo $fetch['id']; ?>&&vId=<?php echo $vId; ?>">View Details</a></div>
                 </div>

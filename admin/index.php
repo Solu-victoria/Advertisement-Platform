@@ -144,11 +144,21 @@ $available=mysqli_num_rows($query);
 												?>
 												<tr class="odd gradeX">
 													<td class="center"><?php echo $row['product']; ?></td>
-													<td class="center"><?php echo $row2['location']; ?> </td>
+													<td class="center"><?php if ($vId === '0') {
+														echo 'Nsukka, Nigeria';
+													}else {
+														echo $row2['location'];
+													}
+													?> </td>
 													<td class="center"><?php echo $row['price']; ?></td>
 													<td class="center"><?php echo $row['category']; ?></td>
 													<td class="center"><?php echo $row['description']; ?></td>
-													<td class="center"><?php echo $row2['first_name'].' '. $row2['last_name'] ; ?></td>
+													<td class="center"><?php  
+													if ($vId === '0') {
+														echo 'Onyinye Fashion Enterprise';
+														}else {
+															echo $row2['first_name'].' '. $row2['last_name'] ;
+														}?></td>
 													<td class="center"><?php echo $row['color']; ?></td>
 													<td class="center"><?php echo $row['brand']; ?></td>
 													<td class="center"><?php echo $row['size']; ?></td>

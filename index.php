@@ -83,7 +83,12 @@ include "auth.php";
           </div>
           <div class="feature-detail">
             <ul class="featureList">
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch2['location']; ?></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i><?php if ($vId === '0') {
+														echo 'Nsukka, Nigeria';
+													}else {
+														echo $fetch2['location'];
+													}
+													?></li>
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date,"Y,m,d"); ?></li>
             </ul>
           </div>
@@ -241,7 +246,12 @@ include "auth.php";
           </div>
           <div class="feature-detail">
             <ul class="featureList">
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch4['location']; ?></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php if ($vId === '0') {
+														echo 'Nsukka, Nigeria';
+													}else {
+														echo $fetch4['location'];
+													}
+													?></li>
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date2,"Y,m,d"); ?></li>
             </ul>
           </div>

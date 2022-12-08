@@ -1,0 +1,38 @@
+DB Name= 'onyinye';
+
+Schema::create('vendors', function (Blueprint $table) {
+    $table->id();
+    $table->text('first_name');
+    $table->text('last_name');
+    $table->text('email')->unique();
+    $table->text('password');
+    $table->text('location');
+    $table->text('phone');
+    $table->text('zipcode');
+    $table->text('file');
+});
+
+Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->integer('vendor_id');
+    $table->text('product');
+    $table->integer('price');
+    $table->text('category');
+    $table->longtext('description');
+    $table->text('color');
+    $table->text('size');
+    $table->text('brand');
+    $table->text('status')->default('pending');
+    $table->text('img1');
+    $table->text('img2')-.nullable();
+    $table->text('img3')-.nullable();
+    $table->text('img4')-.nullable();
+    $table->date('date');
+});
+
+Schema::create('admin', function (Blueprint $table) {
+    $table->id();
+    $table->text('email')->unique();
+    $table->text('password');
+    $table->date('date');
+)};
