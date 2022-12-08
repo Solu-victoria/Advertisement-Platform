@@ -1,6 +1,7 @@
 <?php include "auth.php"; 
 $query=mysqli_query($link,"SELECT * from products where status ='approved'");
 $available=mysqli_num_rows($query);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,37 +124,45 @@ $available=mysqli_num_rows($query);
 													<th class="center"> Ad title </th>
 													<th class="center"> Location </th>
 													<th class="center"> Price </th>
+													<th class="center"> Category </th>
+													<th class="center"> Description </th>
 													<th class="center"> Seller </th>
 													<th class="center"> Color </th>
+													<th class="center"> Brand </th>
 													<th class="center"> Size </th>
-													<th class="center"> status </th>
-													<th class="center"> date </th>
+													<th class="center"> Status </th>
+													<th class="center"> Date </th>
 													<th class="center"> Action </th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
-												$query=mysqli_query($link, "SELECT * from products");
 												while($row=mysqli_fetch_array($query)){
+													$vId = $row['vendor_id'];
+													$query2=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+													$row2=mysqli_fetch_array($query2);
 												?>
 												<tr class="odd gradeX">
 													<td class="center"><?php echo $row['product']; ?></td>
-													<td class="center"><?php echo $row['location']; ?> </td>
+													<td class="center"><?php echo $row2['location']; ?> </td>
 													<td class="center"><?php echo $row['price']; ?></td>
-													<td class="center"><?php echo $row['seller']; ?></td>
+													<td class="center"><?php echo $row['category']; ?></td>
+													<td class="center"><?php echo $row['description']; ?></td>
+													<td class="center"><?php echo $row2['first_name'].' '. $row2['last_name'] ; ?></td>
 													<td class="center"><?php echo $row['color']; ?></td>
+													<td class="center"><?php echo $row['brand']; ?></td>
 													<td class="center"><?php echo $row['size']; ?></td>
 													<td class="center">
 														<span class="label label-sm label-success"><?php echo $row['status']; ?> </span>
 													</td>
 													<td class="center"><?php echo $row['date']; ?></td>
 													<td class="center">
-														<a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
+														<!-- <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
 															<i class="fa fa-pencil"></i>
-														</a>
-														<button class="btn btn-tbl-delete btn-xs">
+														</a> -->
+														<a class="btn btn-tbl-delete btn-xs" href='delete_ad.php?id=<?php echo $row['id']?>' onclick='confirm("Are you sure you want to delete this Ad?")'>
 															<i class="fa fa-trash-o "></i>
-														</button>
+														</a>
 													</td>
 												</tr>
 												<?php } ?>

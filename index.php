@@ -63,7 +63,7 @@ include "auth.php";
     <div class="heading-text">Find out & explore new businesses near your area and see what's happening !!!</div>
     <ul class="row feature-service">
       <?php 
-      $query=mysqli_query($link, "SELECT * from products ORDER BY RAND() LIMIT 0,4");
+      $query=mysqli_query($link, "SELECT * from products where status='approved' ORDER BY RAND() LIMIT 0,4");
       while ($fetch=mysqli_fetch_array($query)) {
         $date = date_create($fetch['date']);
       ?>
@@ -220,7 +220,7 @@ include "auth.php";
     <div class="heading-text">Find out & explore new businesses near your area and see what's happening !!!</div>
     <ul class="row feature-service">
       <?php
-      $query3=mysqli_query($link, "SELECT * from products ORDER BY RAND() LIMIT 0,4");
+      $query3=mysqli_query($link, "SELECT * from products where status='approved' ORDER BY RAND() LIMIT 0,4");
       while ( $fetch3=mysqli_fetch_array($query3)) {
         $date2 = date_create($fetch3['date']);
         

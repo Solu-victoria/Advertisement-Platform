@@ -11,7 +11,7 @@ session_start();
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<meta name="description" content="Responsive Admin Template" />
 	<meta name="author" content="SmartUniversity" />
-	<title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+	<title>Admin Login</title>
 	<!-- icons -->
 	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="assets/plugins/iconic/css/material-design-iconic-font.min.css">
@@ -35,11 +35,11 @@ session_start();
 						Log in
 					</span>
 					<div class="wrap-input100 validate-input" data-validate="Enter email">
-						<input class="input100" type="email" name="email" placeholder="Email">
+						<input class="input100" type="email" name="email" placeholder="Email" required>
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password" required>
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 					<div class="container-login100-form-btn">
@@ -70,7 +70,7 @@ session_start();
 if(isset($_POST['submit'])){
     $email=mysqli_real_escape_string($link,$_POST['email']);
     $password=$_POST['password'];
-    $select = mysqli_query($link, "select * from admin where email = '$email'");
+
     if($email==''||$password==''){
         echo "<script>alert('Please check for empty fields!')</script>";
     }else {
@@ -79,12 +79,12 @@ if(isset($_POST['submit'])){
     	if($count==0){
     		echo "<script>alert('Invalid E-mail or Password')</script>";
     	}else{
-        echo "<script>window.open('index.php','_self')</script>";
-       $_SESSION['email']=$email;
+			echo "<script>window.open('index.php','_self')</script>";
+			$_SESSION['email2']=$email;
        
         }
         
-         }
+    }
     
 }
 

@@ -17,7 +17,7 @@
 									</div>
 									<div class="profile-usertitle">
 										<div class="sidebar-userpic-name"> Welcome </div>
-										<div class="profile-usertitle-job"> Manager </div>
+										<div class="profile-usertitle-job"> <?php echo $email2; ?> </div>
 									</div>
 									<div class="sidebar-userpic-btn">
 										<a class="tooltips" href="sign_up.php" data-placement="top"
@@ -57,12 +57,12 @@
 								</a>
 								<ul class="sub-menu">
 									<li class="nav-item">
-										<a href="new_booking.php" class="nav-link ">
+										<a href="new_ad.php" class="nav-link ">
 											<span class="title">New Ad</span>
 										</a>
 									</li>
 									<li class="nav-item">
-										<a href="view_booking.php" class="nav-link ">
+										<a href="view_ads.php" class="nav-link ">
 											<span class="title">View Ads</span>
 										</a>
 									</li>

@@ -12,7 +12,7 @@ include "connection.php";
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<meta name="description" content="Responsive Admin Template" />
 	<meta name="author" content="SmartUniversity" />
-	<title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+	<title>Admin Sign-up</title>
 	<!-- icons -->
 	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="assets/plugins/iconic/css/material-design-iconic-font.min.css">
@@ -82,12 +82,16 @@ if(isset($_POST['submit'])){
     	$count=mysqli_num_rows($select);
     	if($count!=0){
     		echo "<script>alert('Email Already Exists')</script>";
+
     	}else{
-    		$insert=mysqli_query($link,"INSERT into admin (email,password) values ('$emailz','$pass')");
-        echo "<script>window.open('index.php','_self')</script>";
-       
+    		$insert=mysqli_query($link,"INSERT into admin (email,password,date) values ('$emailz','$pass',NOW())");
+			if ($insert) {
+				$_SESSION['email2'] = $emailz;
+				echo "<script>window.open('index.php','_self')</script>";
+			}
+        	
         }
         
-         }
+    }
 }
 ?>

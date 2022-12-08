@@ -1,9 +1,9 @@
 <?php
 session_start();
 include "connection.php";
-$email=$_SESSION['email'];
-if(!$email){
-    echo "<script>window.open('login.php')</script>";
+$email2=$_SESSION['email2'];
+if(!isset($email2)){
+    echo "<script>window.open('login.php','_self')</script>";
 }
 
 ?>

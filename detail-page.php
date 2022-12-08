@@ -18,7 +18,7 @@ $fetch2=mysqli_fetch_array($query2);
 
 <?php include "topbar.php"; ?>
 
-<?php include "header.php"; echo $_GET['id'];?>
+<?php include "header.php";?>
 
 <!--inner heading start-->
 <div class="inner-heading">
@@ -116,49 +116,7 @@ $fetch2=mysqli_fetch_array($query2);
 
 <!--=================================================--> 
 <!--footer start-->
-<div class="footer-wrap">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-sm-6">
-        <h3>ABOUT Classify</h3>
-        <div class="footer-logo"><img src="images/footer-logo.png" alt=""></div>
-        <p>Integer ac lorem sit amet est rhoncus dapi bus don cad pede acus morbi elit nunc molestie at ultrices eu eleifen lorem ut dictum erat masa... <a href="#">Read More</a></p>
-      </div>
-      <div class="col-md-2 col-sm-6">
-        <h3>Quick  LInks</h3>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Categories</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3>MAIN CATEGORIES</h3>
-        <ul class="footer-category">
-          <li><a href="#">Automotive</a></li>
-          <li><a href="#">Humanities</a></li>
-          <li><a href="#">Computers</a></li>
-          <li><a href="#">Education</a></li>
-          <li><a href="#">Health / Fitness</a></li>
-          <li><a href="#"> Internet Services</a></li>
-          <li><a href="#">Marketing</a></li>
-          <li><a href="#">Technology</a></li>
-        </ul>
-        <div class="clearfix"></div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <h3>MAIN CATEGORIES</h3>
-        <div class="address">Lorem # 38, Ispum Hill, Lorem, WA 12345 </div>
-        <div class="info"><i class="fa fa-phone" aria-hidden="true"></i> <a href="#">(777) 123 4567</a></div>
-        <div class="info"><i class="fa fa-fax" aria-hidden="true"></i> <a href="#">(123) 456 7890</a></div>
-      </div>
-    </div>
-    <div class="copyright">Copyright © 2017 Classify - All Rights Reserved.</div>
-  </div>
-</div>
+<?php include "footer.php"; ?>
 
 <!--footer end--> 
 

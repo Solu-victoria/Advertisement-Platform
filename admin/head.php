@@ -7,7 +7,8 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
 	<meta name="description" content="Responsive Admin Template" />
 	<meta name="author" content="SmartUniversity" />
-	<title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+	<title>Onyinye Fashion Admin Dashboard</title>
+	
 	<!-- icons -->
 	<link href="assets/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
 	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

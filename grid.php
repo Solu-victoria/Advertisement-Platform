@@ -52,7 +52,7 @@ include "connection.php";
         <ul class="listService row grid">
           
         <?php
-      $query=mysqli_query($link, "SELECT * from products");
+      $query=mysqli_query($link, "SELECT * from products where status='approved'");
       while ( $fetch=mysqli_fetch_array($query)) {
         
       ?>
