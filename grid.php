@@ -54,7 +54,6 @@ include "connection.php";
         <?php
       $query=mysqli_query($link, "SELECT * from products");
       while ( $fetch=mysqli_fetch_array($query)) {
-        $date = date_create($fetch['date']);
         
       ?>
           <li class="col-md-6 col-sm-6">
@@ -62,11 +61,17 @@ include "connection.php";
               <div class="listImg"><img src="product_images/<?php echo $fetch['img1']; ?>" alt="">
                 <div class="price">$<?php echo $fetch['price']; ?></div>
               </div>
-              <h3><a href="detail-page.php?id=<?php echo $fetch['id']; ?>"><?php echo $fetch['product']; ?></a></h3>
-              <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch['location']; ?></div>
+              <?php 
+                $vId = $fetch['vendor_id'];
+                $query2=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+                $fetch2=mysqli_fetch_array($query2);
+
+              ?>
+              <h3><a href="detail-page.php?id=<?php echo $fetch['id']; ?>&&vId=<?php echo $vId; ?>"><?php echo $fetch['product']; ?></a></h3>
+              <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch2['location']; ?></div>
               <p><?php echo substr($fetch['description'], 0, 300); ?> </p>
-              <div class="view-btn"><a href="detail-page.php?id=<?php echo $fetch2['id']; ?>">View Details</a></div>
-            </div>
+              <div class="view-btn"><a href="detail-page.php?id=<?php echo $fetch['id']; ?>&&vId=<?php echo $vId; ?>">View Details</a></div>           
+             </div>
           </li>
           <?php
         }

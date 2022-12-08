@@ -6,12 +6,12 @@
       
       
       <?php 
-    if ($email != "") {
+    if (isset($email) && $email != "") {
       ?>
       <div class="col-md-4 col-sm-6 col-xs-6">
         <div class="user-wrap">
           <!-- <div class="login-btn"><a href="login.html">Login</a></div> -->
-          <div class="register-btn"><a href="#">Welcome <?php echo "Swanky"; ?></a></div>
+          <div class="register-btn"><a href="#">Welcome <?php echo $email; ?></a></div>
           <div class="clearfix"></div>
         </div>
       </div>
@@ -38,6 +38,9 @@
           <li><a href="#."><i class="fa fa-google-plus-square" aria-hidden="true"></i></a></li>
           <li><a href="#."><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
           <li><a href="#."><i class="fa fa-vimeo-square" aria-hidden="true"></i></a></li>
+          <?php if (isset($email) && $email != "") { ?>
+            <li><a href="logout.php"><i class=" fa fa-sign-out"></i></a></li>
+          <?php } ?>
         </ul>
       </div>
       <!-- col-md-4 end --> 

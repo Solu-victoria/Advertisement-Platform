@@ -32,9 +32,13 @@
       </div>
       <!--col-md-3 end--> 
       <!--col-md-2 start-->
-      <div class="col-md-2 col-sm-3">
+      <?php
+      if (isset($email)) { ?>
+        <div class="col-md-2 col-sm-3">
         <div class="post-btn"><a href="ad-post.php">Post your Ad!</a></div>
       </div>
+     <?php } ?>
+      
       <!--col-md-2 end--> 
     </div>
     <!--row end--> 

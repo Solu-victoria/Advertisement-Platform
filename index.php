@@ -63,22 +63,28 @@ include "auth.php";
     <div class="heading-text">Find out & explore new businesses near your area and see what's happening !!!</div>
     <ul class="row feature-service">
       <?php 
-      $query2=mysqli_query($link, "SELECT * from products ORDER BY RAND() LIMIT 0,4");
-      while ($fetch2=mysqli_fetch_array($query2)) {
-        $date2 = date_create($fetch2['date']);
+      $query=mysqli_query($link, "SELECT * from products ORDER BY RAND() LIMIT 0,4");
+      while ($fetch=mysqli_fetch_array($query)) {
+        $date = date_create($fetch['date']);
       ?>
       <li class="col-md-3 col-sm-6 col-xs-12">
-        <div class="feature-image" style=" overflow: hidden;  width: 100%; height: 150px;"><img src="product_images/<?php echo $fetch2['img1']; ?>" alt="" style="margin-left: auto; margin-right: auto; text-align: center; object-fit: cover;">
-          <div class="price">$<?php echo $fetch2['price']; ?></div>
+        <div class="feature-image" style=" overflow: hidden;  width: 100%; height: 150px;"><img src="product_images/<?php echo $fetch['img1']; ?>" alt="" style="margin-left: auto; margin-right: auto; text-align: center; object-fit: cover;">
+          <div class="price">$<?php echo $fetch['price']; ?></div>
         </div>
         <div class="feature">
+        <?php 
+          $vId = $fetch['vendor_id'];
+          $query2=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+          $fetch2=mysqli_fetch_array($query2);
+
+        ?>
           <div class="feat-bg">
-            <h3><a href="detail-page.php?id=<?php echo $fetch2['id']; ?>"><?php echo $fetch2['product']; ?></a></h3>
+            <h3><a href="detail-page.php?id=<?php echo $fetch['id']; ?>&&vId=<?php echo $vId;?>"><?php echo $fetch['product']; ?></a></h3>
           </div>
           <div class="feature-detail">
             <ul class="featureList">
               <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch2['location']; ?></li>
-              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date2,"Y,m,d"); ?></li>
+              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date,"Y,m,d"); ?></li>
             </ul>
           </div>
         </div>
@@ -87,7 +93,7 @@ include "auth.php";
     }
     ?>
     </ul>
-    <div class="view-btn"><a href="features.php">View All Feature ads</a></div>
+    <div class="view-btn"><a href="feature.php">View All Feature ads</a></div>
   </div>
 </div>
 <!--feature end--> 
@@ -214,23 +220,29 @@ include "auth.php";
     <div class="heading-text">Find out & explore new businesses near your area and see what's happening !!!</div>
     <ul class="row feature-service">
       <?php
-      $query=mysqli_query($link, "SELECT * from products");
-      while ( $fetch=mysqli_fetch_array($query)) {
-        $date = date_create($fetch['date']);
+      $query3=mysqli_query($link, "SELECT * from products ORDER BY RAND() LIMIT 0,4");
+      while ( $fetch3=mysqli_fetch_array($query3)) {
+        $date2 = date_create($fetch3['date']);
         
       ?>
       <li class="col-md-3 col-sm-6 col-xs-12">
-        <div class="feature-image"><img src="product_images/<?php echo $fetch['img1']; ?>" alt="">
-          <div class="price">$<?php echo $fetch['price']; ?></div>
+        <div class="feature-image"><img src="product_images/<?php echo $fetch3['img1']; ?>" alt="">
+          <div class="price">$<?php echo $fetch3['price']; ?></div>
         </div>
+        <?php 
+          $vId = $fetch3['vendor_id'];
+          $query4=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+          $fetch4=mysqli_fetch_array($query4);
+
+        ?>
         <div class="feature">
           <div class="feat-bg">
-            <h3><a href="detail-page.php?id=<?php echo $fetch2['id']; ?>"><?php echo $fetch['product']; ?></a></h3>
+            <h3><a href="detail-page.php?id=<?php echo $fetch3['id']; ?>&&vId=<?php echo $vId; ?>"><?php echo $fetch3['product']; ?></a></h3>
           </div>
           <div class="feature-detail">
             <ul class="featureList">
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch['location']; ?></li>
-              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date,"Y,m,d"); ?></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch4['location']; ?></li>
+              <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date2,"Y,m,d"); ?></li>
             </ul>
           </div>
         </div>

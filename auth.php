@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (session_status() === PHP_SESSION_ACTIVE) {
-    $email="ezeanyimhenry@gmail.com";
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 }
 ?>

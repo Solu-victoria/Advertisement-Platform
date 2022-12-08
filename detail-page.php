@@ -1,9 +1,14 @@
 <?php
 include "connection.php";
 include "auth.php";
-$id=$_GET['id'];
-$query=mysqli_query($link, "SELECT * from products where id = '$id'");
+$idd=$_GET['id'];
+$vId=$_GET['vId'];
+
+$query=mysqli_query($link, "SELECT * from products where id = '$idd'");
 $fetch=mysqli_fetch_array($query);
+
+$query2=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+$fetch2=mysqli_fetch_array($query2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +18,7 @@ $fetch=mysqli_fetch_array($query);
 
 <?php include "topbar.php"; ?>
 
-<?php include "header.php"; ?>
+<?php include "header.php"; echo $_GET['id'];?>
 
 <!--inner heading start-->
 <div class="inner-heading">
@@ -60,12 +65,12 @@ $fetch=mysqli_fetch_array($query);
         <div class="sidebarWrp">
           <div class="userinfo">
             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-            <h3><?php echo ucfirst($fetch['seller']); ?></h3>
+            <h3><?php echo $fetch2['first_name'].' '. $fetch2['last_name'] ; ?></h3>
             <p>Member Since 2014</p>
-            <div class="readmore"><a href="#"><?php echo $fetch['location']; ?></a></div>
+            <div class="readmore"><a href="#"><?php echo $fetch2['location']; ?></a></div>
           </div>
           <div class="innerprice">$<?php echo $fetch['price']; ?></div>
-          <div class="phone">(777) 123 4567</div>
+          <div class="phone">(<?php echo $fetch2['zipcode']; ?>) <?php echo $fetch2['phone']; ?></div>
           <!-- <div class="mapWrp">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30593401584!2d-74.25986539089548!3d40.69714941954754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY!5e0!3m2!1sen!2sus!4v1506615745397" width="100" height="250" style="border:0" allowfullscreen></iframe>
           </div> -->

@@ -35,13 +35,19 @@ include "connection.php";
         <div class="feature-image"><img src="product_images/<?php echo $fetch['img1']; ?>" alt="">
           <div class="price">$<?php echo $fetch['price']; ?></div>
         </div>
+        <?php 
+          $vId = $fetch['vendor_id'];
+          $query2=mysqli_query($link, "SELECT * from vendors where id='$vId'");
+          $fetch2=mysqli_fetch_array($query2);
+
+        ?>
         <div class="feature">
           <div class="feat-bg">
-            <h3><a href="detail-page.php?id=<?php echo $fetch['id']; ?>"><?php echo $fetch['product']; ?></a></h3>
+            <h3><a href="detail-page.php?id=<?php echo $fetch['id']; ?>&&vId=<?php echo $vId; ?>"><?php echo $fetch['product']; ?></a></h3>
           </div>
           <div class="feature-detail">
             <ul class="featureList">
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch['location']; ?></li>
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $fetch2['location']; ?></li>
               <li><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo date_format($date,"Y,m,d"); ?></li>
             </ul>
           </div>
