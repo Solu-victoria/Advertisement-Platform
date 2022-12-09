@@ -36,3 +36,10 @@ Schema::create('admin', function (Blueprint $table) {
     $table->text('password');
     $table->date('date');
 )};
+
+Schema::create('subscription', function (Blueprint $table) {
+    $table->id();
+    $table->integer('vendor_id')
+    $table->text('email');
+    $table->date('date');
+)};

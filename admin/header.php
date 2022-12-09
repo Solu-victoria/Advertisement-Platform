@@ -3,9 +3,10 @@
 			<div class="page-header-inner ">
 				<!-- logo start -->
 				<div class="page-logo">
-					<a href="index.html">
-						<img alt="" src="assets/img/logo.png">
-						<span class="logo-default">Spice</span> </a>
+					<a href="index.php">
+						<img style='width: 180px;' alt="" src="../images/logo.png">
+						<!-- <span class="logo-default">Spice</span> -->
+					</a> 
 				</div>
 				<!-- logo end -->
 				<ul class="nav navbar-nav navbar-left in">

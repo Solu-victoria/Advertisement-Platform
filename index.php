@@ -112,105 +112,81 @@ include "auth.php";
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
           <div class="icon"><i class="fa fa-male" aria-hidden="true"></i></div>
-          <h4><a href="#">Men Wears</a></h4>
-          <ul class="categories">
-            <li><a href="#">T-shirts ( 20 )</a></li>
-            <li><a href="#">Trouser ( 09 )</a></li>
-            <li><a href="#">Boxers ( 15 )</a></li>
-            <li><a href="#">Cleaning Jobs ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
+          <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Accessories'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
+          <h4><a href="#">Accessories (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Clothing'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
           <div class="icon"><i class="fa fa-female" aria-hidden="true"></i></div>
-          <h4><a href="#">Women Wears</a></h4>
-          <ul class="categories">
-            <li><a href="#">House For Sale ( 20 )</a></li>
-            <li><a href="#">House For Rent ( 09 )</a></li>
-            <li><a href="#">Land For Sale ( 15 )</a></li>
-            <li><a href="#">Apartments, Flats For Sale ( 0 )</a></li>
-            <li><a href="#">Property For Sale ( 160 )</a></li>
-          </ul>
+          <h4><a href="#">Clothings (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Furnitures'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
           <div class="icon"><i class="fa fa-solid fa-bed" aria-hidden="true"></i></div>
-          <h4><a href="#">Beddings</a></h4>
-          <ul class="categories">
-            <li><a href="#">Expensive Cars ( 20 )</a></li>
-            <li><a href="#">Heavy Vehicles( 09 )</a></li>
-            <li><a href="#">Van ( 15 )</a></li>
-            <li><a href="#">Classic & Fancy ( 0 )</a></li>
-            <li><a href="#">Trucks ( 160 )</a></li>
-          </ul>
+          <h4><a href="#">Furnitures (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
-          <div class="icon"><i class="fa fa-shoe-prints" aria-hidden="true"></i></div>
-          <h4><a href="#">Shoes</a></h4>
-          <ul class="categories">
-            <li><a href="#">Cell Phones ( 20 )</a></li>
-            <li><a href="#">Tablets( 09 )</a></li>
-            <li><a href="#">Laptops ( 15 )</a></li>
-            <li><a href="#">Printers ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="col-md-3 col-sm-6">
-        <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Electronics'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
           <div class="icon"><i class="fa fa-solid fa-headset" aria-hidden="true"></i></div>
-          <h4><a href="#">Accessories</a></h4>
-          <ul class="categories">
-            <li><a href="#">Birds ( 20 )</a></li>
-            <li><a href="#">Cats( 09 )</a></li>
-            <li><a href="#">Fishes ( 15 )</a></li>
-            <li><a href="#">Dogs ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
+          <h4><a href="#">Electronics (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
-          <div class="icon"><i class="fa fa-brands fa-redhat" aria-hidden="true"></i></div>
-          <h4><a href="#">Hats</a></h4>
-          <ul class="categories">
-            <li><a href="#">Weddings ( 20 )</a></li>
-            <li><a href="#">Property ( 09 )</a></li>
-            <li><a href="#">Construction ( 15 )</a></li>
-            <li><a href="#">Plumbing ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Gadgets'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
+          <div class="icon"><i class="fa fa-solid fa-headset" aria-hidden="true"></i></div>
+          <h4><a href="#">Gadgets (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Foot wears'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
+          <div class="icon"><i class="fa fa-shoe-prints" aria-hidden="true"></i></div>
+          <h4><a href="#">Foot wears (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
+        </div>
+      </li>
+      <li class="col-md-3 col-sm-6">
+        <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Skin care products'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
           <div class="icon"><i class="fa fa-paintbrush" aria-hidden="true"></i></div>
-          <h4><a href="#">Cosmetics</a></h4>
-          <ul class="categories">
-            <li><a href="#">Clothes ( 20 )</a></li>
-            <li><a href="#">Shoes( 09 )</a></li>
-            <li><a href="#">Beauty Products( 15 )</a></li>
-            <li><a href="#">Wathes & Jewellery ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
+          <h4><a href="#">Skin care products (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
       <li class="col-md-3 col-sm-6">
         <div class="categorybox">
+        <?php $query=mysqli_query($link, "SELECT COUNT(category) AS NumberOfProducts FROM Products WHERE category='Fairly used equipments'"); 
+          $fetch=mysqli_fetch_array($query);
+          ?>
           <div class="icon"><i class="fa fa-heart" aria-hidden="true"></i></div>
-          <h4><a href="#">Others</a></h4>
-          <ul class="categories">
-            <li><a href="#">Flower shop ( 20 )</a></li>
-            <li><a href="#">Luxar Hotel ( 09 )</a></li>
-            <li><a href="#">Bar( 15 )</a></li>
-            <li><a href="#">Restaurant ( 0 )</a></li>
-            <li><a href="#">Others ( 160 )</a></li>
-          </ul>
+          <h4><a href="#">Fairly used equipments (<?php echo $fetch['NumberOfProducts']?>)</a></h4>
+          
         </div>
       </li>
     </ul>

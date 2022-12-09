@@ -45,30 +45,19 @@ $fetch2=mysqli_fetch_array($query2);
             </div>
           </div>
         </div>
-        <h2>Description</h2>
+        <h2>Shopping Guide</h2>
         <p><b>Color:</b> <?php echo $fetch['color']; ?></p>
         <p><b>Size:</b> <?php echo $fetch['size']; ?></p>
         <p> <?php echo $fetch['description']; ?> </p>
-        <h2>Shopping Guide</h2>
-        <ul class="featureLinks">
-          <li>Donec elementum pharetra dapibus</li>
-          <li>Nam dictum vestibulum diam</li>
-          <li>Orci varius natoque penatibus et magnis</li>
-          <li>Proin facilisis ante in turpis venenatis</li>
-          <li>Vestibulum lectus ex, faucibus</li>
-          <li>Morbi efficitur elit ac dolor porttitor</li>
-          <li>Fusce rhoncus vehicula lacus vitae</li>
-          <li>Sed porttitor risus vitae justo gravida</li>
-        </ul>
       </div>
       <div class="col-md-4">
         <div class="sidebarWrp">
           <div class="userinfo">
             <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
             <h3><?php if ($vId === '0') {
-														echo 'Onyinye Fashion Enterprise'. '</h3> <p>CEO Since 2010</p>';
+														echo 'Onyinye Fashion Enterprise';
 													}else {
-														echo $fetch2['first_name'].' '. $fetch2['last_name'] . '</h3> <p>Member Since 2014</p>';
+														echo $fetch2['first_name'].' '. $fetch2['last_name'];
 													} ?>
           
             <div class="readmore"><a href="#"><?php if ($vId === '0') {
@@ -105,11 +94,22 @@ $fetch2=mysqli_fetch_array($query2);
               <div class="input-wrap">
                 <textarea class="form-control" placeholder="Type Your Message here.."></textarea>
                 <div class="form-icon"><i class="fa fa-comment" aria-hidden="true"></i></div>
-              </div>
+              </div> 
               <div class="contact-btn">
                 <button class="sub" type="submit" value="submit" name="submitted"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit Now</button>
               </div>
             </div>
+          </form>
+            <br>
+          <form method='post'>
+            <h3>Subscribe</h3>
+            <div class="input-wrap">
+              <input type="text" name="email" placeholder="Your Email" class="form-control">
+              <div class="form-icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+            </div>
+            <div class="contact-btn">
+                <button class="sub" type="submit" value="submit" name="submit"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+              </div>
           </form>
           <div class="safety-tips">
             <h3>Safety Tips</h3>
@@ -158,3 +158,25 @@ $fetch2=mysqli_fetch_array($query2);
 
 <!-- Mirrored from malikhassan.com/html/classified/detail-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 08 Jan 2022 21:17:35 GMT -->
 </html>
+<?php
+if (isset($_POST['submit'])) {
+  $email=mysqli_real_escape_string($link, $_POST['email']);
+
+  $res = mysqli_query($link, "select * from subscription where email ='$email' AND vendor_id='$vId'");
+  $count = mysqli_num_rows($res);
+
+  if ($count>0) {
+    echo "<script>alert('You have previously subscribed to this vendor before!!')</script>";
+  }else {
+    
+    $sql = "INSERT into subscription (vendor_id,email,date) values ('$vId', '$email', NOW())";
+
+    $insert= mysqli_query($link, $sql) 
+            or die(mysqli_error($link));
+
+    if($insert) {
+
+      echo "<script>alert('You have successfully subscribed!!')</script>";
+    }
+  }
+}
