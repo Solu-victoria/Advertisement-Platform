@@ -1,3 +1,4 @@
+<?php include "functions.php"; ?>
 <div class="header-wrap">
   <div class="container"> 
     <!--row start-->
@@ -17,12 +18,12 @@
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class=""> <a href="index.php" class="active"> Home</a>
+                <li class=""> <a href="index.php" class="<?php echo ($_SERVER['REQUEST_URI']=='/') ? 'active' : navItemClass('/index.php') ?>"> Home </a>
                   </li>
-                <li> <a href="about-us.php"> About Us</a></li>
-                <li> <a href="feature.php"> Features</a></li>
-                <li> <a href="listing.php"> Ad Listings</a></li>
-                <li> <a href="contact-us.php"> Contact us </a></li>
+                <li> <a href="about-us.php" class="<?php echo navItemClass('/about-us.php')?>"> About Us</a></li>
+                <li> <a href="feature.php" class="<?php echo navItemClass('/feature.php')?>"> Features</a></li>
+                <li> <a href="listing.php" class="<?php echo navItemClass('/listing.php')?>"> Ad Listings</a></li>
+                <li> <a href="contact-us.php" class="<?php echo navItemClass('/contact-us.php')?>"> Contact us </a></li>
               </ul>
             </div>
             <div class="clearfix"></div>

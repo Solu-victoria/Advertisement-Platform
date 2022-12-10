@@ -1,6 +1,13 @@
 <?php
 include('connection.php');
 
+function navItemClass($itemUri) {
+    if ($_SERVER['REQUEST_URI'] == $itemUri) {
+      return 'active';
+    }
+    return '';
+  }
+
 function getRealIpUser(){
     switch(true){
             
