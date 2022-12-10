@@ -68,6 +68,13 @@
 									</li>
 								</ul>
 							</li>
+							<li class="nav-item ">
+								<a href="vendors.php" class="nav-link">
+									<i class="material-icons">business_center</i>
+									<span class="title">View Vendors</span>
+									
+								</a>
+							</li>
 							<!-- <li class="nav-item">
 								<a href="#" class="nav-link nav-toggle">
 									<i class="material-icons">vpn_key</i>

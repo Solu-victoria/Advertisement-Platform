@@ -68,10 +68,10 @@ $fetch2=mysqli_fetch_array($query2);
 													?></a></div>
           </div>
           <div class="innerprice">$<?php echo $fetch['price']; ?></div>
-          <div class="phone">(<?php if ($vId === '0') {
-														echo '+234)8134555430';
+          <div class="phone"><?php if ($vId === '0') {
+														echo '8134555430';
 													}else {
-														echo $fetch2['zipcode'].')'.$fetch2['phone'];
+														$fetch2['phone'];
 													} ?></div>
           <!-- <div class="mapWrp">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30593401584!2d-74.25986539089548!3d40.69714941954754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY!5e0!3m2!1sen!2sus!4v1506615745397" width="100" height="250" style="border:0" allowfullscreen></iframe>
