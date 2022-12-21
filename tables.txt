@@ -10,6 +10,8 @@ Schema::create('vendors', function (Blueprint $table) {
     $table->text('phone');
     $table->text('zipcode');
     $table->text('file');
+    $table->text('is_verified');
+    $table->tinyint('is_approved')->default('0');
 });
 
 Schema::create('products', function (Blueprint $table) {

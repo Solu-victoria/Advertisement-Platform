@@ -8,6 +8,13 @@ function navItemClass($itemUri) {
     return '';
   }
 
+  function redirect_to( $location = NULL ) {
+    if ($location != NULL) {
+        header("Location: {$location}");
+        exit;
+    }
+}
+
 function getRealIpUser(){
     switch(true){
             

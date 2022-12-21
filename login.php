@@ -31,6 +31,23 @@ include "auth.php";
       <div class="col-md-6 col-sm-8">
         <div class="login">
           <div class="contctxt">User Login</div>
+          <?php
+          if (!empty($_SESSION['successmessage'])) {
+            $message = $_SESSION['successmessage'];
+            echo '<div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> '.$message.'
+          </div>';
+          unset($_SESSION['successmessage']);
+          }elseif (!empty($_SESSION['errormessage'])){
+            $message = $_SESSION['errormessage'];
+            echo '<div class="alert alert-error alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> '.$message.'
+          </div>';
+          unset($_SESSION['errormessage']);
+          }
+          ?>
           <div class="formint conForm">
             <form method='POST'>
               <div class="input-wrap">
@@ -79,17 +96,27 @@ include "auth.php";
     $res = mysqli_query($link, "select * from vendors where email ='$email' AND password='$password'");
       $count = mysqli_num_rows($res);
 
+      $res2 = mysqli_query($link, "select * from vendors where email ='$email'");
+  $fet = mysqli_fetch_assoc($res2);
+
       if ($count>0) {
+        if($fet['is_verified'] != '1'){
+          $_SESSION['errormessage'] = "Verify your email to sign in.";
+          header("Refresh:0");
+        }else{
+
+          $_SESSION['email'] = $email;
+
+          $row=mysqli_fetch_array($res);
+          $_SESSION['id'] = $row['id'];
+  
+          echo "<script>window.open('index.php', '_self')</script>";
+  
+        }
        
-        $_SESSION['email'] = $email;
-
-        $row=mysqli_fetch_array($res);
-        $_SESSION['id'] = $row['id'];
-
-        echo "<script>window.open('index.php', '_self')</script>";
-
       }else {
-        echo "<script>alert('Inputs do not match our records!! Try again.')</script>";
+        $_SESSION['errormessage'] = "Inputs do not match our records!! Try again.";
+        header("Refresh:0");
       
       }
   }

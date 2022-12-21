@@ -28,6 +28,23 @@ include "connection.php";
       <div class="col-md-6 col-sm-8">
         <div class="login">
           <div class="contctxt">Ad Information</div>
+          <?php
+          if (!empty($_SESSION['successmessage'])) {
+            $message = $_SESSION['successmessage'];
+            echo '<div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> '.$message.'
+          </div>';
+          unset($_SESSION['successmessage']);
+          }elseif (!empty($_SESSION['errormessage'])){
+            $message = $_SESSION['errormessage'];
+            echo '<div class="alert alert-error alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> '.$message.'
+          </div>';
+          unset($_SESSION['errormessage']);
+          }
+          ?>
           <div class="formint conForm">
             <form method="post" enctype="multipart/form-data">
               <div class="input-wrap">

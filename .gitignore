@@ -1,2 +1,3 @@
-vendor_docs/
-product_images/
+vendor_docs/*
+product_images/*
+config.php
